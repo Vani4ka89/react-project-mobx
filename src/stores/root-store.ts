@@ -1,5 +1,5 @@
-class RootStore {
+import {postsStore} from "./posts-store";
 
+export class RootStore {
+    post = postsStore;
 }
-
-export const rootStore = new RootStore();

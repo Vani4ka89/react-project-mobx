@@ -1,35 +1,26 @@
 import {FC, useEffect} from 'react';
-import {postsStore} from "../../stores/posts-store";
+import {observer} from "mobx-react-lite";
 
-const Posts: FC = () => {
-    const {getPostsAction, posts} = postsStore;
+import {useStores} from "../../stores/root-store-context";
+
+const Posts: FC = observer(() => {
+    const {post: {getPostsAction, posts}} = useStores();
 
     useEffect(() => {
         getPostsAction();
     }, [getPostsAction]);
 
-    if (posts?.state === 'pending') {
-        return <div>Loading!..</div>
+    if (!posts) {
+        return null;
     }
-    if (posts?.state === 'rejected') {
-        return <div>Error</div>
-    }
-
-    console.log(posts);
 
     return (
         <div>
-
+            {posts.map(post => (
+                <div key={post.id}>{post.title}</div>
+            ))}
         </div>
     )
-
-    // return posts.case({
-    //     pending:()=><div>Loading!..</div>,
-    //     rejected:()=><div>Error!..</div>,
-    //     fulfilled:(value)=>(
-    //         <div>{value[0].body}</div>
-    //     ),
-    // });
-};
+});
 
 export {Posts};

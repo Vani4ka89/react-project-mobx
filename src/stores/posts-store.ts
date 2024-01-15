@@ -1,19 +1,25 @@
-import {makeAutoObservable} from "mobx";
-import {fromPromise, IPromiseBasedObservable} from "mobx-utils";
+import {makeAutoObservable, runInAction} from "mobx";
 
 import {IPost} from "../interfaces/post-interface";
 import {userService} from "../services/user-service";
-import {AxiosResponse} from "axios";
 
 class PostsStore {
-    posts?: IPromiseBasedObservable<AxiosResponse<IPost[]>>;
+    posts?: IPost[] = [];
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    getPostsAction() {
-        this.posts = fromPromise(userService.getPosts());
+    getPostsAction = async () => {
+        try {
+            const {data} = await userService.getPosts();
+
+            runInAction(() => {
+                this.posts = data;
+            })
+        } catch (e) {
+            console.log(e);
+        }
     }
 }
 

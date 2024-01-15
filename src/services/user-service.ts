@@ -1,9 +1,9 @@
-import {apiService, IRes} from "./api-service";
-import {urls} from "../constants/urls";
 import {IPost} from "../interfaces/post-interface";
+import {urls} from "../constants/urls";
+import {apiService, IRes} from "./api-service";
 
 export const userService = {
     getPosts(): IRes<IPost[]> {
-        return apiService.get(urls.users.posts);
+        return apiService.get<IPost[]>(urls.users.posts);
     }
-};
+}
