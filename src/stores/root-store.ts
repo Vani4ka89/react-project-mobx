@@ -1,5 +1,7 @@
 import {postsStore} from "./posts-store";
 
-export class RootStore {
+class RootStore {
     post = postsStore;
 }
+
+export const rootStore = new RootStore();

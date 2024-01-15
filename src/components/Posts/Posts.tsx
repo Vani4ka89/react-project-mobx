@@ -4,20 +4,23 @@ import {observer} from "mobx-react-lite";
 import {useStores} from "../../stores/root-store-context";
 
 const Posts: FC = observer(() => {
-    const {post: {getPostsAction, posts}} = useStores();
+    const {post: {getPostsAction, posts, error}} = useStores();
 
     useEffect(() => {
         getPostsAction();
     }, [getPostsAction]);
 
-    if (!posts) {
-        return null;
+    if (error) {
+        return <div>Something went wrong</div>
     }
 
     return (
         <div>
-            {posts.map(post => (
-                <div key={post.id}>{post.title}</div>
+            {posts && posts.map(post => (
+                <div key={post.id}>
+                    <div>{post.id}</div>
+                    <div>{post.title}</div>
+                </div>
             ))}
         </div>
     )

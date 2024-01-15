@@ -4,7 +4,8 @@ import {IPost} from "../interfaces/post-interface";
 import {userService} from "../services/user-service";
 
 class PostsStore {
-    posts?: IPost[] = [];
+    posts: IPost[];
+    error = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -18,7 +19,7 @@ class PostsStore {
                 this.posts = data;
             })
         } catch (e) {
-            console.log(e);
+            this.error = true;
         }
     }
 }

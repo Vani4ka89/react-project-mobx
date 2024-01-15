@@ -1,14 +1,14 @@
 import {createContext, useContext} from "react";
 
-import {RootStore} from "./root-store";
+import {rootStore} from "./root-store";
 
-const RootStoreContext = createContext<RootStore | null>(null);
+const RootStoreContext = createContext(rootStore);
 
 const useStores = () => {
     const context = useContext(RootStoreContext);
 
-    if (context === null) {
-        throw new Error('');
+    if (!context) {
+        throw new Error('You forgot add context');
     }
 
     return context;
