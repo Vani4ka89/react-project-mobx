@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: darkgrey;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container a {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.container a[class='active'] {
+    color: yellow;
+}

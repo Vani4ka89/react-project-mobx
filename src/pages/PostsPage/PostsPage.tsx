@@ -1,8 +1,8 @@
 import {FC} from 'react';
 
-import {Posts} from "./components/Posts/Posts";
+import {Posts} from "../../components/Posts/Posts";
 
-const App: FC = () => {
+const PostsPage: FC = () => {
     return (
         <div>
             <Posts/>
@@ -10,4 +10,4 @@ const App: FC = () => {
     );
 };
 
-export {App};
+export {PostsPage};

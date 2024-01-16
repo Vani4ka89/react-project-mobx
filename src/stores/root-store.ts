@@ -1,7 +1,9 @@
 import {postsStore} from "./posts-store";
+import {usersStore} from "./users-store";
 
 class RootStore {
-    post = postsStore;
+    users = usersStore;
+    posts = postsStore;
 }
 
 export const rootStore = new RootStore();

@@ -4,7 +4,7 @@ import {observer} from "mobx-react-lite";
 import {useStores} from "../../stores/root-store-context";
 
 const Posts: FC = observer(() => {
-    const {post: {getPostsAction, posts, error}} = useStores();
+    const {posts: {getPostsAction, posts, error}} = useStores();
 
     useEffect(() => {
         getPostsAction();
